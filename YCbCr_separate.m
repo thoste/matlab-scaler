@@ -1,9 +1,12 @@
-RGB = imread('img/kodim23.png');
+clear all;
+
+RGB = getSingleFrame('video/sony4k.mp4',1);
 YCbCr = rgb2ycbcr(RGB);
 
 
 %Create a matrix of 128s.
 a =  128 + zeros(size(RGB,1),size(RGB,2));
+
 
 %Isolate components. 
 Y = YCbCr(:,:,1);
@@ -21,7 +24,8 @@ CbCb = ycbcr2rgb(just_Cb);
 CrCr = ycbcr2rgb(just_Cr);
 
 
-figure, imshow(RGB), title('Original Image');
-figure, imshow(YY), title('Y Component');
-figure, imshow(CbCb), title('Cb Component');
-figure, imshow(CrCr), title('Cr Component');  
+figure()
+subplot(2,2,1), imshow(RGB), title('Original Image');
+subplot(2,2,2), imshow(YY), title('Y Component');
+subplot(2,2,3), imshow(CbCb), title('Cb Component');
+subplot(2,2,4), imshow(CrCr), title('Cr Component');  
