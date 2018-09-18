@@ -1,6 +1,6 @@
 clear all;
 
-RGB = imread('img/kodim23.png');
+RGB = imread('img/IMG0023.tif');
 %imfinfo('img/kodim23.png')
 
 %c = [1 1 1];
