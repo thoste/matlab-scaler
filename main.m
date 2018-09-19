@@ -1,9 +1,9 @@
 clear all;
 
-RGB = imread('img/IMG0023.bmp');
-imfinfo('img/IMG0023.bmp')
-
+RGB = imread('img/kodim23.tif');
+imfinfo('img/link.png')
+%imshow(RGB);
 
 %frame = getSingleFrame('video/sony4k.mp4',1);
-imshow(RGB);
+
 
