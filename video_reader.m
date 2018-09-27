@@ -1,4 +1,5 @@
 clear all;
+addpath('functions');
 
 videoObj = VideoReader('video/sony1080p.mp4');
 

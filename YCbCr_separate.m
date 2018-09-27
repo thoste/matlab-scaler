@@ -1,4 +1,5 @@
 clear all;
+addpath('functions');
 
 RGB = getSingleFrame('video/sony4k.mp4',1);
 YCbCr = rgb2ycbcr(RGB);

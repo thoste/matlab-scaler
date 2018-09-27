@@ -1,4 +1,5 @@
 clear all;
+addpath('functions');
 
 % Get image
 RGB = imread('img/kodim23.tif');

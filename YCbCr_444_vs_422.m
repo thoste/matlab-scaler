@@ -1,4 +1,5 @@
 clear all;
+addpath('functions');
 
 % Red RGB picture
 RGB_color = imread('img/random-colors.png');

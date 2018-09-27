@@ -1,5 +1,5 @@
 clear all;
-
+addpath('functions');
 
 RGB = imread('img/kodim23.tif');
 %RGB = imread('img/LionKing.png');
