@@ -1,6 +1,7 @@
 %% Convert RGB into YCbCr 4:2:2
 
 function YCbCr = rgb2ycbcr422(RGB)
+    % Separate each colour value from input image
     R = RGB(:,:,1);
     G = RGB(:,:,2);
     B = RGB(:,:,3);
