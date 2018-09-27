@@ -1,2 +1,2 @@
-# matlab-video-scaler
+# matlab-scaler
 MATLAB implementation of video scaling algorithms
