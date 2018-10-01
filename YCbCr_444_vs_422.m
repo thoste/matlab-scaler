@@ -1,4 +1,4 @@
-clear all;
+clear variables;
 addpath('functions');
 
 % Red RGB picture

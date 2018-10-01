@@ -1,4 +1,4 @@
-clear all;
+clear variables;
 addpath('functions');
 
 % Get image
@@ -16,10 +16,19 @@ self_nearest = nearest(scaled_down_rgb, scale_factor);
 matlab_nearest = imresize(scaled_down_rgb, scale_factor, 'nearest');
 
 
-% % Nearest neighbor upscaling YCbCr
+% Nearest neighbor upscaling YCbCr
 self_nearest_ycbcr = nearest(scaled_down_ycbcr, scale_factor);
 matlab_nearest_ycbcr = imresize(scaled_down_ycbcr, scale_factor, 'nearest');
 
+% Calculate Peak Sgnal-to-Noise Ratio
+[PSNR_matlab_rgb, SNR_matlab_rgb] = psnr(matlab_nearest, RGB);
+[PSNR_matlab_ycbcr, SNR_matlab_ycbcr] = psnr(matlab_nearest_ycbcr, YCbCr_422);
+[PSNR_self_rgb, SNR_self_rgb] = psnr(self_nearest, RGB);
+[PSNR_self_ycbcr, SNR_self_ycbcr] = psnr(self_nearest_ycbcr, YCbCr_422);
+
+
+fprintf("PSNR Matlab RGB: %f\nPSNR Matlab YCbCr: %f\n", PSNR_matlab_rgb, PSNR_matlab_ycbcr);
+fprintf("PSNR Self RGB: %f\nPSNR Self YCbCr: %f\n", PSNR_self_rgb, PSNR_self_ycbcr);
 
 % Plot figures
 figure();

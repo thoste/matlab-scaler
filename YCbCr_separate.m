@@ -1,4 +1,4 @@
-clear all;
+clear variables;
 addpath('functions');
 
 RGB = getSingleFrame('video/sony4k.mp4',1);
