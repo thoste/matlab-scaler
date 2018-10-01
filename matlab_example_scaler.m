@@ -1,11 +1,11 @@
 clear variables;
 addpath('functions');
 
-RGB = imread('img/kodim23.tif');
+RGB = imread('img/IMG0023.tif');
 %RGB = imread('img/LionKing.png');
 %RGB = imread('img/link.png');
 %RGB = imread('img/random-colors.png');
-%imfinfo('img/kodim23.png')
+%imfinfo('img/IMG0023.png')
 
 %c = [1 1 1];
 %r = [1 2 3];

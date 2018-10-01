@@ -2,8 +2,10 @@ clear variables;
 addpath('functions');
 
 % Get image
-RGB = imread('img/kodim23.tif');
-%RGB = getSingleFrame('video/sony4k.mp4',1);
+%RGB = imread('img/IMG0021.tif');
+%RGB = imread('img/IMG0023.tif');
+%RGB = imread('img/lionking.png');
+RGB = imread('img/sony4k.png');
 YCbCr_422 = rgb2ycbcr422(RGB);
 
 % Scale down
