@@ -1,11 +1,12 @@
 clear variables;
 addpath('functions');
+addpath('quality');
 
 % Get image
-%RGB = imread('img/IMG0021.tif');
+RGB = imread('img/IMG0021.tif');
 %RGB = imread('img/IMG0023.tif');
 %RGB = imread('img/lionking.png');
-RGB = imread('img/sony4k.png');
+%RGB = imread('img/sony4k.png');
 YCbCr_422 = rgb2ycbcr422(RGB);
 
 % Scale down
@@ -27,10 +28,18 @@ matlab_nearest_ycbcr = imresize(scaled_down_ycbcr, scale_factor, 'nearest');
 [PSNR_matlab_ycbcr, SNR_matlab_ycbcr] = psnr(matlab_nearest_ycbcr, YCbCr_422);
 [PSNR_self_rgb, SNR_self_rgb] = psnr(self_nearest, RGB);
 [PSNR_self_ycbcr, SNR_self_ycbcr] = psnr(self_nearest_ycbcr, YCbCr_422);
-
-
+fprintf("-----------------------------------------\n");
 fprintf("PSNR Matlab RGB: %f\nPSNR Matlab YCbCr: %f\n", PSNR_matlab_rgb, PSNR_matlab_ycbcr);
 fprintf("PSNR Self RGB: %f\nPSNR Self YCbCr: %f\n", PSNR_self_rgb, PSNR_self_ycbcr);
+
+% Calculate Structural Similarity SSIM
+[mssim_matlab_rgb, ssim_map_matlab_rgb] = ssim(matlab_nearest, RGB);
+[mssim_matlab_ycbcr, ssim_map_matlab_ycbcr] = ssim(matlab_nearest_ycbcr, YCbCr_422);
+[mssim_self_rgb, ssim_map_self_rgb] = ssim(self_nearest, RGB);
+[mssim_self_ycbcr, ssim_map_self_ycbcr] = ssim(self_nearest_ycbcr, YCbCr_422);
+fprintf("-----------------------------------------\n");
+fprintf("SSIM Matlab RGB: %f\nSSIM Matlab YCbCr: %f\n", mssim_matlab_rgb, mssim_matlab_ycbcr);
+fprintf("SSIM Self RGB: %f\nSSIM Self YCbCr: %f\n", mssim_self_rgb, mssim_self_ycbcr);
 
 % Plot figures
 figure();

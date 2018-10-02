@@ -1,7 +1,6 @@
 clear all;
 addpath('functions');
+addpath('quality');
 
-RGB = imread('img/IMG0023.tif');
-imwrite(RGB,'img/kodim23.png');
 
 

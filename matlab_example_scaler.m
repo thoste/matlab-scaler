@@ -1,5 +1,6 @@
 clear variables;
 addpath('functions');
+addpath('quality');
 
 RGB = imread('img/IMG0023.tif');
 %RGB = imread('img/LionKing.png');
@@ -25,6 +26,12 @@ scale_bicubic = imresize(scale_down, 4, 'bicubic');
 [psnr_bilinear, snr_bilinear] = psnr(scale_bilinear, RGB);
 [psnr_bicubic, snr_bicubic] = psnr(scale_bicubic, RGB);
 fprintf("PSNR\nNearest: %f\nBilinear: %f\nBicubic: %f\n", psnr_nearest, psnr_bilinear, psnr_bicubic);
+
+% Structural Similarity SSIM
+[mssim_nearest, ssim_map_nearest] = ssim(scale_nearest, RGB);
+[mssim_bilinear, ssim_map_bilinear] = ssim(scale_bilinear, RGB);
+[mssim_bicubic, ssim_map_bicubic] = ssim(scale_bicubic, RGB);
+fprintf("SSIM\nNearest: %f\nBilinear: %f\nBicubic: %f\n", mssim_nearest, mssim_bilinear, mssim_bicubic);
 
 % Figure
 figure()
