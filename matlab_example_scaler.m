@@ -1,6 +1,5 @@
 clear variables;
 addpath('functions');
-addpath('quality');
 
 RGB = imread('img/IMG0023.tif');
 %RGB = imread('img/LionKing.png');
@@ -35,7 +34,10 @@ fprintf("SSIM\nNearest: %f\nBilinear: %f\nBicubic: %f\n", mssim_nearest, mssim_b
 
 % Figure
 figure()
-subplot(2,2,1), imshow(RGB), title('Original');
-subplot(2,2,2), imshow(scale_nearest), title('Nearest');
-subplot(2,2,3), imshow(scale_bilinear), title('Bilinear');
-subplot(2,2,4), imshow(scale_bicubic), title('Bicubic');
+subplot(2,3,1), imshow(scale_nearest), title(sprintf('Nearest\nPSNR = %f',psnr_nearest));
+subplot(2,3,2), imshow(scale_bilinear), title(sprintf('Bilinear\nPSNR = %f',psnr_bilinear));
+subplot(2,3,3), imshow(scale_bicubic), title(sprintf('Bicubic\nPSNR = %f',psnr_bicubic));
+
+subplot(2,3,4);imshow(ssim_map_nearest,[]);title(sprintf('SSIM map Nearest\nMean SSIM = %f',mssim_nearest));
+subplot(2,3,5);imshow(ssim_map_bilinear,[]);title(sprintf('SSIM map Bilinear\nMean SSIM = %f',mssim_bilinear));
+subplot(2,3,6);imshow(ssim_map_bicubic,[]);title(sprintf('SSIM map Self Bicubic\nMean SSIM = %f',mssim_bicubic));
