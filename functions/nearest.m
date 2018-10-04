@@ -12,9 +12,11 @@ function output_image = nearest(input_image, scale_factor)
     % Allocate output image with new size
     m = ceil(m * scale_factor);
     n = ceil(n * scale_factor);
-    A_new = uint8(zeros(m,n));
-    B_new = uint8(zeros(m,n));
-    C_new = uint8(zeros(m,n));
+    bit = class(input_image);
+    A_new = zeros(m,n,bit);
+    B_new = zeros(m,n,bit);
+    C_new = zeros(m,n,bit);
+
 
     % Run thourch each pixel in output image
     for i=1:m
