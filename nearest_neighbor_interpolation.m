@@ -2,15 +2,26 @@ clear variables;
 addpath('functions');
 
 % Get image
-RGB = imread('img/IMG0023.tif');
+%RGB = imread('img/IMG0023.tif');
 %RGB = imread('img/IMG0021.tif');
 %RGB = imread('img/sony4k.png');
 %RGB = imread('img/lionking.png');
+RGB = imread('img/planetearth2_2.png');
+
+% Convert 16-bit RGB to 8-bit
+if isa(RGB,'uint16')
+    fprintf('Converting uint16 to uint8\n');
+    RGB = uint8(RGB/256);
+end
+
+% Create YCbCr 4:2:2 image
 YCbCr_422 = rgb2ycbcr422(RGB);
 
+
+
 % SSIM file names
-ssim_file_rgb = 'ssim/ssim_macaws_nearest_rgb.png';
-ssim_file_ycbcr = 'ssim/ssim_macaws_nearest_ycbcr.png';
+ssim_file_rgb = 'ssim/ssim_planetearth2_nearest_rgb.png';
+ssim_file_ycbcr = 'ssim/ssim_planetearth2_nearest_ycbcr.png';
 
 % Scale down
 scale_factor = 4;
