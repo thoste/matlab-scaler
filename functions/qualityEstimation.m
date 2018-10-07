@@ -49,10 +49,13 @@ function quality = qualityEstimation(RGB_file, algorithm)
  
     % Replace file name
     old2 = {'.tif', '.png'};
-    new2 = '_ssim_rgb.png';
-    new3 = '_ssim_ycbcr.png';
+    new2 = '_ssim_rgb_';
+    new3 = '_ssim_ycbcr_';
     ssim_rgb_file = replace(new_folder, old2, new2);
+    ssim_rgb_file = strcat(ssim_rgb_file,algorithm,'.png');
     ssim_ycbcr_file = replace(new_folder, old2, new3);
+    ssim_ycbcr_file = strcat(ssim_ycbcr_file,algorithm,'.png');
+    
     
     % Write SSIM map to PNG image
     imwrite(ssim_map_self_rgb, ssim_rgb_file);
