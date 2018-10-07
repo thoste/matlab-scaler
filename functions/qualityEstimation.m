@@ -62,12 +62,12 @@ function quality = qualityEstimation(RGB_file, algorithm)
     imwrite(ssim_map_self_ycbcr, ssim_ycbcr_file);
     
     % Return quality metrics
-    quality = {"PSNR RGB", PSNR_self_rgb;
-        "PSNR YCbCr", PSNR_self_ycbcr;
-        "SNR RGB", SNR_self_rgb;
-        "SNR YCbCr", SNR_self_ycbcr;
-        "MSE RGB", MSE_self_rgb;
-        "MSE YCbCr", MSE_self_ycbcr;
-        "SSIM RGB", mssim_self_rgb;
-        "SSIM YCbCr", mssim_self_ycbcr};
+    quality = {"PSNR-RGB", PSNR_self_rgb;
+        "PSNR-YCbCr", PSNR_self_ycbcr;
+        "SNR-RGB", SNR_self_rgb;
+        "SNR-YCbCr", SNR_self_ycbcr;
+        "MSE-RGB", MSE_self_rgb;
+        "MSE-YCbCr", MSE_self_ycbcr;
+        "SSIM-RGB", mssim_self_rgb;
+        "SSIM-YCbCr", mssim_self_ycbcr};
 end

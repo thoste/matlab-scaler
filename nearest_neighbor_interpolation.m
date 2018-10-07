@@ -2,11 +2,6 @@ clear variables;
 addpath('functions');
 
 % Get image
-%RGB = imread('img/IMG0023.tif');
-%RGB = imread('img/IMG0021.tif');
-%RGB = imread('img/sony4k.png');
-%RGB = imread('img/lionking.png');
-%RGB = imread('img/planetearth2_2.png');
 RGB = imread('img/games/fortnite.png');
 
 % Convert 16-bit RGB to 8-bit
