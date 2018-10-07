@@ -17,8 +17,8 @@ function output_image = bilinear(input_image, scale_factor)
     C_new = uint8(zeros(m,n));
 
     % Run thourch each pixel in output image
-    for i=1:m
-        for j=1:n
+    for i = 1:m
+        for j = 1:n
             % Calculate corresponding position in input image
 
 

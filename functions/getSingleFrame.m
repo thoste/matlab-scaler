@@ -1,4 +1,4 @@
-%% Get single video frame from video at a given time
+%% Get single video frame from video at a given time in seconds
 
 function videoFrame = getSingleFrame(video, seconds)
     reader = VideoReader(video);

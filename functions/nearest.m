@@ -19,8 +19,8 @@ function output_image = nearest(input_image, scale_factor)
 
 
     % Run thourch each pixel in output image
-    for i=1:m
-        for j=1:n
+    for i = 1:m
+        for j = 1:n
             % Calculate corresponding position in input image
             % Need ceil/floor depending on scale_factor to be within
             % dimensions

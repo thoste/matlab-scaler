@@ -6,7 +6,8 @@ addpath('functions');
 %RGB = imread('img/IMG0021.tif');
 %RGB = imread('img/sony4k.png');
 %RGB = imread('img/lionking.png');
-RGB = imread('img/planetearth2_2.png');
+%RGB = imread('img/planetearth2_2.png');
+RGB = imread('img/games/fortnite.png');
 
 % Convert 16-bit RGB to 8-bit
 if isa(RGB,'uint16')
