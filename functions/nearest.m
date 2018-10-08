@@ -17,7 +17,6 @@ function output_image = nearest(input_image, scale_factor)
     B_new = zeros(m,n,bit);
     C_new = zeros(m,n,bit);
 
-
     % Run thourch each pixel in output image
     for i = 1:m
         for j = 1:n

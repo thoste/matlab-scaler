@@ -9,7 +9,7 @@ games = ["img/games/bf1.png", "img/games/fortnite.png"];
 images = [natural, animation, games];
 
 % Algorithm to run
-algorithm = 'nearest';
+algorithm = 'bilinear';
 
 % Open file for writing results
 file_name = strcat('results_',algorithm,'.csv');

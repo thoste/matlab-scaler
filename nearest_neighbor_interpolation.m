@@ -13,8 +13,6 @@ end
 % Create YCbCr 4:2:2 image
 YCbCr_422 = rgb2ycbcr422(RGB);
 
-
-
 % SSIM file names
 ssim_file_rgb = 'ssim/ssim_planetearth2_nearest_rgb.png';
 ssim_file_ycbcr = 'ssim/ssim_planetearth2_nearest_ycbcr.png';

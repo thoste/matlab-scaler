@@ -21,11 +21,11 @@ function quality = qualityEstimation(RGB_file, algorithm)
             self_rgb = nearest(scaled_down_rgb, scale_factor);
             self_ycbcr = nearest(scaled_down_ycbcr, scale_factor);
         case 'bilinear'
-            self_rgb = nearest(scaled_down_rgb, scale_factor);
-            self_ycbcr = nearest(scaled_down_ycbcr, scale_factor);
+            self_rgb = bilinear(scaled_down_rgb, scale_factor);
+            self_ycbcr = bilinear(scaled_down_ycbcr, scale_factor);
         case 'bicubic'
-            self_rgb = nearest(scaled_down_rgb, scale_factor);
-            self_ycbcr = nearest(scaled_down_ycbcr, scale_factor);
+            self_rgb = bicubic(scaled_down_rgb, scale_factor);
+            self_ycbcr = bicubic(scaled_down_ycbcr, scale_factor);
         otherwise
             % Do nothing
     end
