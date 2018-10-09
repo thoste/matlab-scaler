@@ -7,62 +7,48 @@ function output_image = bilinear(input_image, scale_factor)
     C = input_image(:,:,3);
 
     % Calculate size of input image
-    [k,l] = size(A);
+    [orig_height,orig_width] = size(A);
 
     % Allocate output image with new size
-    m = ceil(k * scale_factor);
-    n = ceil(l * scale_factor);
+    height = ceil(orig_height * scale_factor);
+    width = ceil(orig_width * scale_factor);
     bit = class(input_image);
-    A_new = zeros(m,n,bit);
-    B_new = zeros(m,n,bit);
-    C_new = zeros(m,n,bit);
-    
-    sy = (k/m);
-    sx = (l/n);
+    A_new = zeros(height,width,bit);
+    B_new = zeros(height,width,bit);
+    C_new = zeros(height,width,bit);
 
-    dx = 1;
-    dy = 1;
+    % Calculate delta size for each step
+    delta_x = (orig_width-1)/width;
+    delta_y = (orig_height-1)/height;
     
+    % Starting position
+    x = 1;
+    y = 1;
+
     % Run thourch each pixel in output image
-    for i = 1:m
-        dy = dy + sy;
-        y1 = floor(dy);
+    for i = 1:height
+        y1 = floor(y);
         y2 = y1 + 1;
-        if y2 > k
-            y1 = k-1;
-            y2 = k;
-        end
-        if dy > y2
-            dy = y2;
-        end
-
-        for j = 1:n
-            dx = dx + sx;
-            x1 = floor(dx);
+        for j = 1:width
+            x1 = floor(x);
             x2 = x1 + 1;
-            if x2 > l
-                x1 = l-1;
-                x2 = l;
-            end
-            if dx > x2
-                dx = x2;
-            end
-  
             
-            Ax_y1 = (x2 - dx)*A(y1,x1) + (dx - x1)*A(y1,x2);
-            Ax_y2 = (x2 - dx)*A(y2,x1) + (dx - x1)*A(y2,x2);
-            A_new(i,j) = (y2 - dy)*Ax_y1 + (dy - y1)*Ax_y2;
+            Ax_y1 = (x2 - x)*A(y1,x1) + (x - x1)*A(y1,x2);
+            Ax_y2 = (x2 - x)*A(y2,x1) + (x - x1)*A(y2,x2);
+            A_new(i,j) = (y2 - y)*Ax_y1 + (y - y1)*Ax_y2;
             
-            Bx_y1 = (x2 - dx)*B(y1,x1) + (dx - x1)*B(y1,x2);
-            Bx_y2 = (x2 - dx)*B(y2,x1) + (dx - x1)*B(y2,x2);
-            B_new(i,j) = (y2 - dy)*Bx_y1 + (dy - y1)*Bx_y2;
+            Bx_y1 = (x2 - x)*B(y1,x1) + (x - x1)*B(y1,x2);
+            Bx_y2 = (x2 - x)*B(y2,x1) + (x - x1)*B(y2,x2);
+            B_new(i,j) = (y2 - y)*Bx_y1 + (y - y1)*Bx_y2;
             
-            Cx_y1 = (x2 - dx)*C(y1,x1) + (dx - x1)*C(y1,x2);
-            Cx_y2 = (x2 - dx)*C(y2,x1) + (dx - x1)*C(y2,x2);
-            C_new(i,j) = (y2 - dy)*Cx_y1 + (dy - y1)*Cx_y2;
+            Cx_y1 = (x2 - x)*C(y1,x1) + (x - x1)*C(y1,x2);
+            Cx_y2 = (x2 - x)*C(y2,x1) + (x - x1)*C(y2,x2);
+            C_new(i,j) = (y2 - y)*Cx_y1 + (y - y1)*Cx_y2;
             
+            x = x + delta_x; 
         end
-        dx = 1;
+        x = 1;
+        y = y + delta_y;
     end
 
     % Combine colours into RGB image

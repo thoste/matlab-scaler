@@ -3,23 +3,35 @@ addpath('functions');
 
 
 % Input image arrays
-R = [0.4 1 0; 0 1 1; 0.8 0.8 0.1 ];
-G = [1 0.5 0; 0 0 1; 0.5 0.3 0.7];
-B = [0.0 0.0 0; 1.0 1.0 0.2; 1.0 0.4 1];
+select = 1;
+if select == 1
+    R = [0.4 1 0; 0 1 1; 0.8 0.8 0.1 ];
+    G = [1 0.5 0; 0 0 1; 0.5 0.3 0.7];
+    B = [0.0 0.0 0; 1.0 1.0 0.2; 1.0 0.4 1];
+elseif select == 2
+    R = [0.4 1 0 0; 0 1 1 1; 0.8 0.8 0.1 0.1];
+    G = [1 0.5 0 0; 0 0 1 1; 0.5 0.3 0.7 0.7];
+    B = [0.0 0.0 0 0; 1.0 1.0 0.2 0.2; 1.0 0.4 1 1];
+else
+    R = [0.4 1 0 0; 0 1 1 1; 0.8 0.8 0.1 0.1; 0.4 1 0 0];
+    G = [1 0.5 0 0; 0 0 1 1; 0.5 0.3 0.7 0.7; 1 0.5 0 0];
+    B = [0.0 0.0 0 0; 1.0 1.0 0.2 0.2; 1.0 0.4 1 1; 0.0 0.0 0 0];
+end
 RGB = cat(3, R, G, B);
 
-scale_factor = 4;
+scale_factor = 2;
 
 % Bilinear upscaling RGB
-self_bilinear_rgb = bilinear(RGB, scale_factor);
-matlab_bilinear_rgb = imresize(RGB, scale_factor, 'bilinear');
+matlab_bilinear = imresize(RGB, scale_factor, 'bilinear');
+self_bilinear = bilinear(RGB, scale_factor);
+self_bilinear2 = bilinear2(RGB, scale_factor);
 
+
+% Plot figure
 figure();
 
-subplot(2,2,1);imshow(RGB);title(sprintf('INPUT image'));
-subplot(2,2,3);imshow(self_bilinear_rgb);title(sprintf('SELF image'));
-subplot(2,2,4);imshow(matlab_bilinear_rgb);title(sprintf('MATLAB image'));
+subplot(2,2,1);imshow(RGB);title(sprintf('Original'));
+subplot(2,2,2);imshow(matlab_bilinear);title(sprintf('Matlab bilinear'));
+subplot(2,2,3);imshow(self_bilinear);title(sprintf('Self bilinear'));
+subplot(2,2,4);imshow(self_bilinear2);title(sprintf('Self bilinear2'));
 
-% figure; image(RGB); title('INPUT image')
-% figure; image(self_bilinear_rgb); title('SELF image')
-% figure; image(matlab_bilinear_rgb); title('MATLAB image')

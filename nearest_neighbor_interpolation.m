@@ -13,22 +13,18 @@ end
 % Create YCbCr 4:2:2 image
 YCbCr_422 = rgb2ycbcr422(RGB);
 
-% SSIM file names
-ssim_file_rgb = 'ssim/ssim_planetearth2_nearest_rgb.png';
-ssim_file_ycbcr = 'ssim/ssim_planetearth2_nearest_ycbcr.png';
-
 % Scale down
-scale_factor = 4;
-scaled_down_rgb = imresize(RGB, (1/scale_factor), 'bicubic');
-scaled_down_ycbcr = imresize(YCbCr_422, (1/scale_factor), 'bicubic');
+scale_factor = 0.25;
+pre_scale_rgb = imresize(RGB, (1/scale_factor), 'bicubic');
+pre_scale_ycbcr = imresize(YCbCr_422, (1/scale_factor), 'bicubic');
 
 % Nearest neighbor upscaling RGB
-self_nearest_rgb = nearest(scaled_down_rgb, scale_factor);
-matlab_nearest_rgb = imresize(scaled_down_rgb, scale_factor, 'nearest');
+self_nearest_rgb = nearest(pre_scale_rgb, scale_factor);
+matlab_nearest_rgb = imresize(pre_scale_rgb, scale_factor, 'nearest');
 
 % Nearest neighbor upscaling YCbCr
-self_nearest_ycbcr = nearest(scaled_down_ycbcr, scale_factor);
-matlab_nearest_ycbcr = imresize(scaled_down_ycbcr, scale_factor, 'nearest');
+self_nearest_ycbcr = nearest(pre_scale_ycbcr, scale_factor);
+matlab_nearest_ycbcr = imresize(pre_scale_ycbcr, scale_factor, 'nearest');
 
 % Calculate Peak Sgnal-to-Noise Ratio
 [PSNR_matlab_rgb, SNR_matlab_rgb] = psnr(matlab_nearest_rgb, RGB);
@@ -57,26 +53,20 @@ fprintf("-----------------------------------------\n");
 fprintf("SSIM Matlab RGB: %0.4f\nSSIM Self RGB: %0.4f\n", mssim_matlab_rgb, mssim_self_rgb);
 fprintf("SSIM Matlab YCbCr: %0.4f\nSSIM Self YCbCr: %0.4f\n", mssim_matlab_ycbcr, mssim_self_ycbcr);
 
-% Write SSIM map to file
-imwrite(ssim_map_self_rgb, ssim_file_rgb);
-imwrite(ssim_map_self_ycbcr, ssim_file_ycbcr);
-
 % Plot figures
 figure();
 
-subplot(4,3,1);imshow(RGB);title(sprintf('Original RGB'));
-subplot(4,3,2);imshow(matlab_nearest_rgb);title(sprintf('Matlab nearest RGB\nPSNR = %0.4f\nMSE = %0.4f',PSNR_matlab_rgb, MSE_matlab_rgb));
-subplot(4,3,3);imshow(self_nearest_rgb);title(sprintf('Self nearest RGB\nPSNR = %0.4f\nMSE = %0.4f',PSNR_self_rgb, MSE_self_rgb));
+subplot(4,2,1);imshow(matlab_nearest_rgb);title(sprintf('Matlab nearest RGB\nPSNR = %0.4f\nMSE = %0.4f',PSNR_matlab_rgb, MSE_matlab_rgb));
+subplot(4,2,2);imshow(self_nearest_rgb);title(sprintf('Self nearest RGB\nPSNR = %0.4f\nMSE = %0.4f',PSNR_self_rgb, MSE_self_rgb));
 
 
-subplot(4,3,5);imshow(ssim_map_matlab_rgb,[]);title(sprintf('SSIM map Matlab nearest RGB\nMean SSIM = %0.4f',mssim_matlab_rgb));
-subplot(4,3,6);imshow(ssim_map_self_rgb,[]);title(sprintf('SSIM map Self nearest RGB\nMean SSIM = %0.4f',mssim_self_rgb));
+subplot(4,2,3);imshow(ssim_map_matlab_rgb,[]);title(sprintf('SSIM map Matlab nearest RGB\nMean SSIM = %0.4f',mssim_matlab_rgb));
+subplot(4,2,4);imshow(ssim_map_self_rgb,[]);title(sprintf('SSIM map Self nearest RGB\nMean SSIM = %0.4f',mssim_self_rgb));
 
-subplot(4,3,7);imshow(ycbcr2rgb(YCbCr_422));title(sprintf('Original YCbCr 4:2:2'));
-subplot(4,3,8);imshow(ycbcr2rgb(matlab_nearest_ycbcr));title(sprintf('Matlab nearest YCbCr 4:2:2\nPSNR = %0.4f\nMSE = %0.4f',PSNR_matlab_ycbcr, MSE_matlab_ycbcr));
-subplot(4,3,9);imshow(ycbcr2rgb(self_nearest_ycbcr));title(sprintf('Self nearest YCbCr 4:2:2\nPSNR = %0.4f\nMSE = %0.4f',PSNR_self_ycbcr, MSE_self_ycbcr));
+subplot(4,2,5);imshow(ycbcr2rgb(matlab_nearest_ycbcr));title(sprintf('Matlab nearest YCbCr 4:2:2\nPSNR = %0.4f\nMSE = %0.4f',PSNR_matlab_ycbcr, MSE_matlab_ycbcr));
+subplot(4,2,6);imshow(ycbcr2rgb(self_nearest_ycbcr));title(sprintf('Self nearest YCbCr 4:2:2\nPSNR = %0.4f\nMSE = %0.4f',PSNR_self_ycbcr, MSE_self_ycbcr));
 
 
-subplot(4,3,11);imshow(ssim_map_matlab_ycbcr,[]);title(sprintf('SSIM map Matlab nearest YCbCr\nMean SSIM = %0.4f',mssim_matlab_ycbcr));
-subplot(4,3,12);imshow(ssim_map_self_ycbcr,[]);title(sprintf('SSIM map Self nearest YCbCr\nMean SSIM = %0.4f',mssim_self_ycbcr));
+subplot(4,2,7);imshow(ssim_map_matlab_ycbcr,[]);title(sprintf('SSIM map Matlab nearest YCbCr\nMean SSIM = %0.4f',mssim_matlab_ycbcr));
+subplot(4,2,8);imshow(ssim_map_self_ycbcr,[]);title(sprintf('SSIM map Self nearest YCbCr\nMean SSIM = %0.4f',mssim_self_ycbcr));
 
