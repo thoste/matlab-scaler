@@ -9,26 +9,36 @@ games = ["img/games/bf1.png", "img/games/fortnite.png"];
 images = [natural, animation, games];
 
 % Algorithm to run
-algorithm = 'bilinear';
+algorithm = 'self';
+method = 'bilinear';
+scale_factor = 4;
 
 % Open file for writing results
-file_name = strcat('results_',algorithm,'.csv');
+if scale_factor < 1
+    file_name = strcat('results/results_',algorithm,'_',method,'_downscale.csv');
+else
+    file_name = strcat('results/results_',algorithm,'_',method,'_upscale.csv');
+end
 fileID = fopen(file_name,'w');
 
 % Write first line CSV format
 fprintf(fileID,'image,psnrrgb,psnrycbcr,snrrgb,snrycbcr,msergb,mseycbcr,ssimrgb,ssimycbcr\n');
-
 
 for i = 1:size(images,2)
     % Info print
     fprintf('Processing file: %s\n', images(i));
     
     % Calculate quality estimate
-    quality = qualityEstimation(images(i), algorithm);
+    quality = qualityEstimation(images(i), algorithm, method, scale_factor);
+    
+    % Format image name
+    old = {'img/natural/','img/animation/','img/games/', '.tif', '.png'};
+    new = '';
+    image_name = replace(images(i), old, new);
     
     %Write result to file CSV format
-    fprintf(fileID,images(i));
-    formatSpec = ',%0.4f';
+    fprintf(fileID,image_name);
+    formatSpec = ',%#.4g';
     [nrows,ncols] = size(quality);
     for row = 1:nrows
         fprintf(fileID,formatSpec,quality{row,2});
@@ -38,4 +48,4 @@ end
 
 % Close file
 fclose(fileID);
-
+fprintf('Done\n');
