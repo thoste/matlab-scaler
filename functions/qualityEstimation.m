@@ -1,5 +1,5 @@
 
-function quality = qualityEstimation(RGB_file, algorithm, method, scale_factor)
+function quality = qualityEstimation(RGB_file, algorithm, method, scale_factor, matlab_AA_filter)
     RGB = imread(RGB_file);
     
     % Convert 16-bit RGB to 8-bit
@@ -20,8 +20,8 @@ function quality = qualityEstimation(RGB_file, algorithm, method, scale_factor)
             scaled_rgb = interpolate(prescaled_rgb, scale_factor, method);
             scaled_ycbcr = interpolate(prescaled_ycbcr, scale_factor, method);
         case 'matlab'
-            scaled_rgb = imresize(prescaled_rgb, scale_factor, method);
-            scaled_ycbcr = imresize(prescaled_ycbcr, scale_factor, method);
+            scaled_rgb = imresize(prescaled_rgb, scale_factor, method, 'Antialiasing', matlab_AA_filter);
+            scaled_ycbcr = imresize(prescaled_ycbcr, scale_factor, method, 'Antialiasing', matlab_AA_filter);
         otherwise
             % Default is to use own algorithm
             scaled_rgb = interpolate(prescaled_rgb, scale_factor, method);

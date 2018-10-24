@@ -2,7 +2,7 @@ clear all;
 addpath('functions');
 
 % Get image
-RGB = imread('img/games/bf1.png');
+RGB = imread('img/animation/LionKing.png');
 
 % Convert 16-bit RGB to 8-bit
 if isa(RGB,'uint16')
