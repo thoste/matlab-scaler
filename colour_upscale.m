@@ -1,4 +1,5 @@
 clear all;
+%clc;
 addpath('functions');
 
 
@@ -8,14 +9,14 @@ G = uint8([0 128 255 0; 0 255 128 128; 255 204 128 0; 255 0 255 128]);
 B = uint8([0 0 0 255; 0 0 128 0; 255 0 255 0; 0 255 255 0]);
 RGB = cat(3, R, G, B);
 
-scale_factor = 4;
+scale_factor = 8;
 
 % Upscaling RGB
 matlab_nearest = imresize(RGB, scale_factor, 'nearest');
 self_nearest = nearest(RGB, scale_factor);
 
 matlab_bilinear = imresize(RGB, scale_factor, 'bilinear');
-self_bilinear2 = bilinear2(RGB, scale_factor);
+self_bilinear2 = bilinear(RGB, scale_factor);
 
 matlab_bicubic = imresize(RGB, scale_factor, 'bicubic');
 self_bicubic = bicubic(RGB, scale_factor);
