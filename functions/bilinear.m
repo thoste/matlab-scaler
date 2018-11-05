@@ -17,21 +17,32 @@ function output_image = bilinear(input_image, scale_factor)
     B_new = zeros(height,width,bit);
     C_new = zeros(height,width,bit);
 
-    % Calculate delta size for each step
-    delta_x = (orig_width-1)/width;
-    delta_y = (orig_height-1)/height;
+    height_scale = (orig_height/height);
+    width_scale = (orig_width/width);
     
-    % Starting position
-    x = 1;
-    y = 1;
-
     % Run thourch each pixel in output image
     for i = 1:height
-        y1 = floor(y);
-        y2 = y1 + 1;
+        y = (height_scale * i) + (0.5 * (1 - 1/scale_factor));
         for j = 1:width
-            x1 = floor(x);
+            x = (width_scale * j) + (0.5 * (1 - 1/scale_factor));
+            
+            x(x < 1) = 1;
+            if x >= orig_width
+                x = orig_width;
+                x1 = floor(x) - 1;
+            else
+                x1 = floor(x);
+            end
             x2 = x1 + 1;
+            
+            y(y < 1) = 1;
+            if y >= orig_height
+                y = orig_height;
+                y1 = floor(y) - 1;
+            else
+                y1 = floor(y);
+            end
+            y2 = y1 + 1;
             
             Ax_y1 = (x2 - x)*A(y1,x1) + (x - x1)*A(y1,x2);
             Ax_y2 = (x2 - x)*A(y2,x1) + (x - x1)*A(y2,x2);
@@ -44,11 +55,7 @@ function output_image = bilinear(input_image, scale_factor)
             Cx_y1 = (x2 - x)*C(y1,x1) + (x - x1)*C(y1,x2);
             Cx_y2 = (x2 - x)*C(y2,x1) + (x - x1)*C(y2,x2);
             C_new(i,j) = (y2 - y)*Cx_y1 + (y - y1)*Cx_y2;
-            
-            x = x + delta_x; 
         end
-        x = 1;
-        y = y + delta_y;
     end
 
     % Combine colours into RGB image
