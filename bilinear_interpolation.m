@@ -23,7 +23,6 @@ pre_scale_ycbcr = imresize(YCbCr_422, (1/scale_factor), 'bicubic');
 matlab_rgb = imresize(pre_scale_rgb, scale_factor, 'bilinear', 'Antialiasing', false);
 self_rgb = bilinear(pre_scale_rgb, scale_factor);
 
-
 % Bilinear upscaling YCbCr
 matlab_bilinear_ycbcr = imresize(pre_scale_ycbcr, scale_factor, 'bilinear');
 self_bilinear_ycbcr = bilinear(pre_scale_ycbcr, scale_factor);

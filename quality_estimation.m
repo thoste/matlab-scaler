@@ -9,10 +9,10 @@ games = ["img/games/Battlefield1.png", "img/games/Fortnite.png"];
 images = [natural, animation, games];
 
 % Algorithm to run
-algorithm = 'matlab';
-method = 'bilinear';
-scale_factor = 0.25;
-matlab_AA_filter = true;
+algorithm = 'self';
+method = 'bicubic';
+scale_factor = 4;
+matlab_AA_filter = false;
 
 % Open file for writing results
 if scale_factor < 1

@@ -24,6 +24,7 @@ matlab_rgb = imresize(pre_scale_rgb, scale_factor, 'bicubic');
 self_rgb = bicubic(pre_scale_rgb, scale_factor);
 
 
+
 % Calculate Peak Sgnal-to-Noise Ratio
 [PSNR_matlab_rgb, SNR_matlab_rgb] = psnr(matlab_rgb, RGB);
 [PSNR_self_rgb, SNR_self_rgb] = psnr(self_rgb, RGB);

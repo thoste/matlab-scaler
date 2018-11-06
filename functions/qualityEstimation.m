@@ -10,11 +10,11 @@ function quality = qualityEstimation(RGB_file, algorithm, method, scale_factor, 
     
     YCbCr_422 = rgb2ycbcr422(RGB);
     
-    % Scale down
+    % Pre scale
     prescaled_rgb = imresize(RGB, (1/scale_factor), 'bicubic');
     prescaled_ycbcr = imresize(YCbCr_422, (1/scale_factor), 'bicubic');
     
-    % Scale up
+    % Scale
     switch algorithm
         case 'self'
             scaled_rgb = interpolate(prescaled_rgb, scale_factor, method);
