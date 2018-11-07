@@ -1,9 +1,9 @@
 clear variables;
 addpath('functions');
 
-natural = ["img/natural/TwoMacaws.tif", "img/natural/PortlandHeadLight.tif", "img/natural/PlanetEarth2a.png", "img/natural/PlanetEarth2b.png", "img/natural/PlanetEarth2c.png"];
-animation = ["img/animation/LionKing.png", "img/animation/ToyStory.png"];
-games = ["img/games/Battlefield1.png", "img/games/Fortnite.png"];
+natural = ["img/natural/Two Macaws.tif", "img/natural/Portland Head Light.tif", "img/natural/Planet Earth 2a.png", "img/natural/Planet Earth 2b.png", "img/natural/Planet Earth 2c.png"];
+animation = ["img/animation/Lion King.png", "img/animation/Toy Story.png"];
+games = ["img/games/Battlefield 1.png", "img/games/Fortnite.png"];
 
 % Put all image paths in one array
 images = [natural, animation, games];
