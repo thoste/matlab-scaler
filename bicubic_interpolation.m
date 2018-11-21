@@ -3,7 +3,7 @@ clear all;
 addpath('functions');
 
 % Get image
-RGB = imread('img/natural/TwoMacaws.tif');
+RGB = imread('img/natural/Two Macaws.tif');
 
 % Convert 16-bit RGB to 8-bit
 if isa(RGB,'uint16')

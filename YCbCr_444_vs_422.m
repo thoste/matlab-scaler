@@ -3,7 +3,7 @@ addpath('functions');
 
 % Red RGB picture
 RGB_color = imread('img/random-colors.png');
-RGB_birds = imread('img/natural/TwoMacaws.tif');
+RGB_birds = imread('img/natural/Two Macaws.tif');
 
 % Convert to YCbCr
 YCbCr444_color = rgb2ycbcr(RGB_color);
