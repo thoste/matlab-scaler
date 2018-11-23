@@ -14,6 +14,9 @@ function quality = qualityEstimation(RGB_file, algorithm, method, scale_factor, 
     prescaled_rgb = imresize(RGB, (1/scale_factor), 'bicubic');
     prescaled_ycbcr = imresize(YCbCr_422, (1/scale_factor), 'bicubic');
     
+    % Convert from 4:4:4 back to 4:2:2 after scaling
+    prescaled_ycbcr = ycbcr2ycbcr422(prescaled_ycbcr);
+    
     % Scale
     switch algorithm
         case 'self'
@@ -27,6 +30,9 @@ function quality = qualityEstimation(RGB_file, algorithm, method, scale_factor, 
             scaled_rgb = interpolate(prescaled_rgb, scale_factor, method);
             scaled_ycbcr = interpolate(prescaled_ycbcr, scale_factor, method);
     end
+    
+    % Convert from 4:4:4 back to 4:2:2 after scaling
+    scaled_ycbcr = ycbcr2ycbcr422(scaled_ycbcr);
 
     % Calculate PSN and SNR
     [PSNR_rgb, SNR_rgb] = psnr(scaled_rgb, RGB);

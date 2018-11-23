@@ -11,7 +11,7 @@ images = [natural, animation, games];
 % Algorithm to run
 algorithm = 'self';
 method = 'bicubic';
-scale_factor = 4;
+scale_factor = 0.25;
 matlab_AA_filter = false;
 
 % Open file for writing results
