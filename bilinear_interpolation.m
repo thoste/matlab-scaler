@@ -3,7 +3,7 @@ clc;
 addpath('functions');
 
 % Get image
-RGB = imread('img/games/Battlefield1.png');
+RGB = imread('img/natural/Two Macaws.tif');
 
 % Convert 16-bit RGB to 8-bit
 if isa(RGB,'uint16')
@@ -15,7 +15,7 @@ end
 YCbCr_422 = rgb2ycbcr422(RGB);
 
 % Scale down
-scale_factor = 0.25;
+scale_factor = 4;
 pre_scale_rgb = imresize(RGB, (1/scale_factor), 'bicubic');
 pre_scale_ycbcr = imresize(YCbCr_422, (1/scale_factor), 'bicubic');
 
