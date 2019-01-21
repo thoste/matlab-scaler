@@ -1,10 +1,10 @@
 %% Convert from YCbCr 4:4:4 to YCbCr 4:2:2
 
-function YCbCr = ycbcr2ycbcr422(RGB)
+function YCbCr422 = ycbcr2ycbcr422(YCbCr444)
     % Separate each colour value from input image
-    Y = RGB(:,:,1);
-    Cb = RGB(:,:,2);
-    Cr = RGB(:,:,3);
+    Y = YCbCr444(:,:,1);
+    Cb = YCbCr444(:,:,2);
+    Cr = YCbCr444(:,:,3);
 
     % Simulate 4:2:2 chroma sampling
     [m,n] = size(Y);
@@ -20,5 +20,5 @@ function YCbCr = ycbcr2ycbcr422(RGB)
         end
     end
     
-    YCbCr = cat(3,Y,Cb_422,Cr_422);
+    YCbCr422 = cat(3,Y,Cb_422,Cr_422);
 end
