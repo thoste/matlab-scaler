@@ -1,7 +1,0 @@
-interpolation,psnrrgb,psnrycbcr,snrrgb,snrycbcr,msergb,mseycbcr,ssimrgb,ssimycbcr
-Nearest Upscale,33.23,38.81,24.46,32.07,60.12,16.00,0.9328,0.9809
-Bilinear Upscale,34.51,39.76,25.74,33.02,50.09,13.57,0.9425,0.9832
-Bicubic Upscale,35.50,40.83,26.73,34.08,42.99,11.55,0.9488,0.9855
-Nearest Downscale,40.54,46.01,31.77,39.27,12.57,3.382,0.9885,0.9965
-Bilinear Downscale,49.57,50.47,40.80,43.73,0.7388,0.5867,0.9989,0.9995
-Bicubic Downscale,63.18,68.40,54.41,61.65,0.0371,0.0131,0.9999,1.000

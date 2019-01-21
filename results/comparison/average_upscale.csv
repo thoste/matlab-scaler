@@ -1,4 +1,0 @@
-interpolation,psnrrgb,psnrycbcr,snrrgb,snrycbcr,msergb,mseycbcr,ssimrgb,ssimycbcr
-Nearest,33.23,38.81,24.46,32.07,60.12,16.00,0.9328,0.9809
-Bilinear,34.51,39.76,25.74,33.02,50.09,13.57,0.9425,0.9832
-Bicubic,35.50,40.83,26.73,34.08,42.99,11.55,0.9488,0.9855
